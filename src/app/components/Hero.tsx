@@ -10,7 +10,7 @@ export default function Hero() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
-        Welcome to My Portfolio
+        Welcome to Our Portfolio
       </motion.h1>
       <motion.p
         className="text-xl text-gray-600 dark:text-gray-300"
