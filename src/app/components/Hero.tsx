@@ -19,11 +19,12 @@ export default function Hero() {
         transition={{ delay: 0.3, duration: 0.6 }}
       >
         <p>
-        I’m a passionate full-stack developer with a strong background in AI and web/mobile development. I’ve built intelligent chatbots, career platforms, and mobile apps using a wide range of technologies including React, Next.js, Python, and MongoDB.
-        </p>
-        <p>
-          My goal is to create impactful, scalable solutions and continually learn cutting-edge tech. I enjoy working on projects that merge functionality, creativity, and performance.
-        </p>
+  We are a results-driven development team specializing in AI-powered solutions, full-stack web and mobile. Our expertise spans modern technologies such as React, Next.js, Node.js, Python, and MongoDB, enabling us to deliver scalable and intelligent products tailored to client needs.
+</p>
+<p>
+  From AI chatbots and machine learning platforms to enterprise web applications and mobile solutions, we focus on creating high-performance, user-centric products. Our mission is to blend innovation, functionality, and efficiency to help businesses achieve their digital goals.
+</p>
+
               </motion.p>
     </section>
   );
