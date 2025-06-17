@@ -172,7 +172,17 @@ A dynamic blog platform built to demonstrate versatility in front-end frameworks
 Key features include user authentication, blog post creation and editing, comment system, and database CRUD operations. This project serves as a playground to understand how various modern web technologies work in real-world content management use cases.`,
   },
 
+  {
+  slug: 'Netflix-Clone',
+    title: "Movies and Series Streamming",
+    description: 'Streamming Platform similar to Netflix using React and Node, supports video streaming UI',
+    tech: ['MERN', 'Angular', 'Vue'],
+    categories: ['WebDevelopment'],
+    video:'/videos/nc.mp4',
+    detailedDescription: `A full-stack Netflix-inspired streaming platform built using MERN stack with optional Angular and Vue front-end variants for flexibility. The app features a modern, responsive UI for browsing movies and series, with secure user authentication, media preview, and categorized content display.
 
+It includes a backend system for managing content metadata, user sessions, and access control. Designed to emulate core features of commercial streaming services, this clone also serves as a strong foundation for building OTT platforms or integrating multimedia streaming into your projects.`,
+},
 
 ];
 

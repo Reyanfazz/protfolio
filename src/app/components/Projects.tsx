@@ -85,6 +85,14 @@ const allProjects = [
     tech: ['MERN', 'Angular', 'Vue', 'MySQL', 'Firebase'],
     categories: ['WebDevelopment'],
 },
+
+{
+  slug: 'Netflix-Clone',
+    title: "Movies and Series Streamming",
+    description: 'Streamming Platform similar to Netflix using React and Node, supports video streaming UI',
+    tech: ['MERN', 'Angular', 'Vue'],
+    categories: ['WebDevelopment'],
+},
 ];
 
 // Unique categories
