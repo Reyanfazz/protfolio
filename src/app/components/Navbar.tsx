@@ -37,7 +37,6 @@ export default function Navbar() {
             transition={{ delay: 0.2 }}
             className="flex items-center gap-3"
           >
-            <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-full" />
             <Link
               href="/"
               className="text-xl font-bold text-gray-900 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors no-underline"
