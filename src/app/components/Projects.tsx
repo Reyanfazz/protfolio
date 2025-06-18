@@ -230,8 +230,8 @@ export default function Projects() {
                   key={tech}
                   className="flex items-center gap-1 rounded-md bg-indigo-700 bg-opacity-30 px-2 py-1"
                 >
-                  {techIcons.hasOwnProperty(tech) ? 
-                  techIcons[tech] : null}
+                  
+                 {techIcons[tech as keyof typeof techIcons]}
     {tech}
                 </span>
               ))}
