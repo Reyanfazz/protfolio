@@ -3,8 +3,11 @@
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion';
-import { use } from 'react';
+import { use, useState } from 'react';
+import { Loader2 } from 'lucide-react';
+import clsx from 'clsx';
 
+// allProjects should be declared or imported before this component
 const allProjects = [
   {
     slug: 'ai-agent',
@@ -89,18 +92,7 @@ Key features include document preview, multi-file support, contextual memory, an
     
   },
 
-  {
-    slug: 'Groot-Bot',
-    title: "AI Chatbot with Gemini API (Groot Bot)",
-    description: 'Built a Gemini-powered chatbot in Android Studio for real-time personal assistance.',
-    tech: ["AI", "Android Studio", "Gemini API", "Java", "Kotlin", "Material UI"],
-    video: '/videos/grootbot.mp4',
-    detailedDescription: `This project is a mobile-based AI chatbot built in Android Studio, integrated with Google's Gemini API to provide real-time intelligent conversations. Designed as a personal virtual assistant, the app offers a smooth and intuitive chat interface built using Material Design components.
-
-The chatbot supports natural language understanding and context-aware replies powered by Gemini’s advanced LLM capabilities. Users can interact through typed prompts, and the app provides quick suggestion chips to streamline conversations.
-
-The system also includes message persistence, typing indicators, and error handling to ensure a user-friendly experience. It serves as a foundation for building AI-powered productivity tools, educational bots, or customer support apps on Android.`,
-  },
+  
 
   {
     slug: 'Groot-Bot',
@@ -187,13 +179,16 @@ It includes a backend system for managing content metadata, user sessions, and a
 ];
 
 export default function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = use(params); // ✅ Unwrap params
-  const project = allProjects.find(p => p.slug === slug);
+  const { slug } = use(params);
+  const project = allProjects.find((p) => p.slug === slug);
+  const [loading, setLoading] = useState(true);
+
   if (!project) return notFound();
+
 
   return (
     <div className="p-6 md:p-12 max-w-7xl mx-auto">
-      {/* Title Animation */}
+      {/* Project Title */}
       <motion.h1
         className="text-4xl font-bold text-center text-indigo-700 dark:text-indigo-300"
         initial={{ opacity: 0, y: -30 }}
@@ -203,46 +198,66 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
         {project.title}
       </motion.h1>
 
+      {/* Main Content */}
       <motion.div
-        className="flex flex-col lg:flex-row gap-10 items-start mt-8"
+        className="flex flex-col lg:flex-row gap-10 items-start mt-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         transition={{ staggerChildren: 0.2 }}
       >
-        {/* Description Section */}
+        {/* Description */}
         <motion.div
           className="flex-1 prose dark:prose-invert"
-          variants={{
-            hidden: { opacity: 0, x: -40 },
-            visible: { opacity: 1, x: 0 },
-          }}
+          
           transition={{ duration: 0.6 }}
         >
-          <ReactMarkdown>{project.detailedDescription}</ReactMarkdown>
+          <ReactMarkdown>{project.detailedDescription || 'No description available.'}</ReactMarkdown>
         </motion.div>
 
-        {/* Video Section */}
+        {/* Video */}
         <motion.div
-          className="flex-1 w-full max-w-xl"
-          variants={{
-            hidden: { opacity: 0, x: 40 },
-            visible: { opacity: 1, x: 0 },
-          }}
+          className="flex-1 w-full max-w-xl relative"
+         
           transition={{ duration: 0.6 }}
         >
-          <video
-            className="w-full rounded-2xl shadow-2xl"
-            src={project.video}
-            controls
-            autoPlay
-            muted
-            loop
-            playsInline
-            controlsList="nodownload"
-          />
+          {loading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-black/40 z-10 rounded-2xl">
+              <Loader2 className="w-10 h-10 text-indigo-600 animate-spin" />
+            </div>
+          )}
+          {project.video ? (
+            <video
+              className={clsx(
+                'w-full rounded-2xl shadow-2xl ',
+                loading 
+              )}
+              src={project.video}
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              controlsList="nodownload"
+              onLoadedData={() => setLoading(false)}
+            />
+          ) : (
+            <div className="p-4 bg-gray-100 text-center rounded-xl text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+              No video available for this project.
+            </div>
+          )}
         </motion.div>
       </motion.div>
-    </div>
+
+      
+          
+              
+            
+           
+            
+     
+        
+      </div>
+   
   );
 }

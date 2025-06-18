@@ -2,8 +2,28 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Typewriter } from 'react-simple-typewriter';
+import {
+  SiReact,
+  SiTailwindcss,
+  SiFlask,
+  SiBootstrap,
+  SiMongodb,
+  SiPython,
+  SiNextdotjs,
+  SiFirebase,
+  SiKotlin,
+  SiAngular,
+  SiScikitlearn,
+  SiGooglecolab,
+  SiMysql,
+  SiNodedotjs,
+  SiLangchain,
+  SiOpenai,
+  SiHuggingface,
+  SiVuedotjs,
+} from 'react-icons/si';
 
-// Sample projects with multiple categories
 const allProjects = [
   {
     slug: 'ai-agent',
@@ -52,54 +72,94 @@ const allProjects = [
     title: 'AI Chatbot with Gemini API (Groot Bot)',
     description: 'Built in Android Studio for real-time personal assistance.',
     tech: ['AI', 'Android Studio', 'Gemini API', 'Java', 'Kotlin', 'Firebase'],
-    categories: ['AI','Mobile App'],
+    categories: ['AI', 'Mobile App'],
   },
-
   {
     slug: 'Ship-Type-Classification',
-    title: "Ship Type Classification",
+    title: 'Ship Type Classification',
     description: 'Multiclass classification of ship types using AIS data from Kaggle',
-    tech: ["PySpark", "MLlib", "Google Colab", "Kaggle"],
+    tech: ['PySpark', 'MLlib', 'Google Colab', 'Kaggle'],
     categories: ['Machine Learning'],
   },
-  
   {
     slug: 'Face-Recognition',
-    title: "Face Recognition",
+    title: 'Face Recognition',
     description: 'Facial recognition system using PCA for dimensionality reduction and MLP classifier',
-    tech: ["Python", "OpenCV", "scikit-learn", "PCA", "ANN", "MLP"],
+    tech: ['Python', 'OpenCV', 'scikit-learn', 'PCA', 'ANN', 'MLP'],
     categories: ['Machine Learning', 'AI'],
   },
-
   {
     slug: 'Disease-Prediction',
-    title: "Disease Prediction",
+    title: 'Disease Prediction',
     description: 'ML project to Predict Multiple Diseases',
-    tech: ["Python", "Pandas", "scikit-learn", "Jupyter Notebook"],
+    tech: ['Python', 'Pandas', 'scikit-learn', 'Jupyter Notebook'],
     categories: ['Machine Learning'],
   },
-{
-  slug: 'Blog-Platform',
-    title: "Blog Platform",
+  {
+    slug: 'Blog-Platform',
+    title: 'Blog Platform',
     description: 'Multi-framework blogging platform to explore front-end variety and backend SQL support',
     tech: ['MERN', 'Angular', 'Vue', 'MySQL', 'Firebase'],
     categories: ['WebDevelopment'],
-},
-
-{
-  slug: 'Netflix-Clone',
-    title: "Movies and Series Streamming",
-    description: 'Streamming Platform similar to Netflix using React and Node, supports video streaming UI',
+  },
+  {
+    slug: 'Netflix-Clone',
+    title: 'Movies and Series Streaming',
+    description: 'Streaming Platform similar to Netflix using React and Node, supports video streaming UI',
     tech: ['MERN', 'Angular', 'Vue'],
     categories: ['WebDevelopment'],
-},
+  },
 ];
 
-// Unique categories
 const allCategories = ['All', ...Array.from(new Set(allProjects.flatMap(p => p.categories)))];
+
+const techIcons = {
+  AI: null,
+  React: <SiReact className="inline-block mr-1 text-lg" />,
+  Tailwind: <SiTailwindcss className="inline-block mr-1 text-lg" />,
+  Flask: <SiFlask className="inline-block mr-1 text-lg" />,
+  Bootstrap: <SiBootstrap className="inline-block mr-1 text-lg" />,
+  MERN: null,
+  Python: <SiPython className="inline-block mr-1 text-lg" />,
+  Mobile: null,
+  Android: null,
+  Firebase: <SiFirebase className="inline-block mr-1 text-lg" />,
+  Java: null,
+  XML: null,
+  HuggingFace: <SiHuggingface className="inline-block mr-1 text-lg" />,
+  'Next.js': <SiNextdotjs className="inline-block mr-1 text-lg" />,
+  Transformers: null,
+  NLP: null,
+  LangChain: <SiLangchain className="inline-block mr-1 text-lg" />,
+  OpenRouter: null,
+  LLM: null,
+  'Vector DB': null,
+  Mongodb: <SiMongodb className="inline-block mr-1 text-lg" />,
+  'Android Studio': null,
+  'Gemini API': null,
+  Kotlin: <SiKotlin className="inline-block mr-1 text-lg" />,
+  MLlib: null,
+  'Google Colab': <SiGooglecolab className="inline-block mr-1 text-lg" />,
+  Kaggle: null,
+  OpenCV: null,
+  'scikit-learn': <SiScikitlearn className="inline-block mr-1 text-lg" />,
+  PCA: null,
+  ANN: null,
+  MLP: null,
+  Pandas: null,
+  'Jupyter Notebook': null,
+  'MySQL': <SiMysql className="inline-block mr-1 text-lg" />,
+  Angular: <SiAngular className="inline-block mr-1 text-lg" />,
+  Vue: <SiVuedotjs className="inline-block mr-1 text-lg" />,
+  Node: <SiNodedotjs className="inline-block mr-1 text-lg" />,
+  OpenAI: <SiOpenai className="inline-block mr-1 text-lg" />,
+};
+
+
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('All');
+
 
   const filteredProjects =
     selectedCategory === 'All'
@@ -107,20 +167,41 @@ export default function Projects() {
       : allProjects.filter(project => project.categories.includes(selectedCategory));
 
   return (
-    <section id="projects" className="py-16 px-4">
-      <h2 className="text-3xl font-bold text-center mb-10">Projects</h2>
+    <section id="projects" className="relative py-20 px-6 sm:px-12">
+      <motion.h2
+        className="text-4xl sm:text-5xl font-extrabold text-center mb-12"
+        initial={{ y: -30, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+          <Typewriter
+            words={['Projects']}
+            loop={5}
+            cursor
+            cursorStyle="_"
+            typeSpeed={80}
+            deleteSpeed={60}
+            delaySpeed={2000}
+          />
+        </span>
+      </motion.h2>
 
       {/* Category Filters */}
-      <div className="flex flex-wrap justify-center gap-3 mb-6">
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
         {allCategories.map(category => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded-full text-sm transition-colors ${
-              selectedCategory === category
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white'
-            }`}
+            aria-pressed={selectedCategory === category}
+            className={` px-5 py-2 rounded-3xl text-sm font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400
+              ${
+                selectedCategory === category
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/50 scale-105 '
+                  : 'bg-transparent relative rounded-3xl  bg-opacity-10 backdrop-blur-md  border-indigo-400 border-opacity-10 p-7 text-white shadow-md shadow-indigo-900/30 cursor-pointer select-none hover:text-white hover:scale-105'
+              }
+            `}
           >
             {category}
           </button>
@@ -128,36 +209,42 @@ export default function Projects() {
       </div>
 
       {/* Project Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {filteredProjects.map(project => (
           <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
+            key={project.slug}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.07 }}
-            transition={{ duration: 0.3 }}
+            whileHover={{ scale: 1.04, boxShadow: '0 10px 30px rgba(99,102,241,0.5)' }}
+            transition={{ duration: 0.35 }}
             viewport={{ once: true, amount: 0.3 }}
-            className=" dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+            className="relative rounded-3xl  bg-opacity-10 backdrop-blur-md border-indigo-400 border-opacity-10 p-7 text-white shadow-md shadow-indigo-900/30 cursor-pointer select-none"
           >
-            <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-            <p className="mb-4 text-sm">{project.description}</p>
-            <div className="mb-4 flex flex-wrap gap-2">
-              {project.tech.map((tech, i) => (
+            <h3 className="text-2xl font-bold mb-3 drop-shadow-md">{project.title}</h3>
+            <p className="mb-6 text-sm leading-relaxed drop-shadow-md">{project.description}</p>
+
+            {/* Tech stack */}
+            <div className="flex flex-wrap gap-2 mb-5 text-xs font-semibold drop-shadow-md">
+              {project.tech.map(tech => (
                 <span
-                  key={i}
-                  className="inline-block bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-xs"
+                  key={tech}
+                  className="flex items-center gap-1 rounded-md bg-indigo-700 bg-opacity-30 px-2 py-1"
                 >
-                  {tech}
+                  {techIcons.hasOwnProperty(tech) ? 
+                  techIcons[tech] : null}
+    {tech}
                 </span>
               ))}
             </div>
-            <Link
-              href={`/projects/${project.slug}`}
-              target="_blank"
-              className="text-indigo-600 hover:underline font-semibold text-sm"
-            >
-              View Demo
-            </Link>
+
+            <Link href={`/projects/${project.slug}`}>
+  <button
+    className="px-4 py-2 mt-2 relative rounded-3xl  bg-opacity-10 backdrop-blur-md  border-indigo-400 border-opacity-10 p-7 text-white shadow-md shadow-indigo-900/30 cursor-pointer select-none hover:text-white hover:scale-105"
+  >
+    View Demo →
+  </button>
+</Link>
+
           </motion.div>
         ))}
       </div>
